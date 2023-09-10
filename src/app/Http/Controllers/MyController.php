@@ -10,17 +10,21 @@ class MyController extends Controller
 
     protected $myService;
 
-    // メソッド単位でインスタンス作成
-    public function index(MyService $myService)
+    // コンストラクタでインスタンス作成
+    public function __construct(MyService $myService)
+    {
+        $this->myService = $myService;
+    }
+
+    public function index()
     {
         $msg = 'hello';
 
-        $msg = $myService->toUpperCase($msg);
+        $msg = $this->myService->toUpperCase($msg);
 
         $data = [
             'msg' => $msg
         ];
-
 
         return view('service', $data);
     }
