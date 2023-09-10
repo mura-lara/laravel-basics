@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\MyService;
 
 class MyController extends Controller
 {
-    public function index()
+
+    protected $myService;
+
+    // メソッド単位でインスタンス作成
+    public function index(MyService $myService)
     {
         $msg = 'hello';
 
-        // newでインスタンス作成
-        $myService = new \App\Services\MyService();
         $msg = $myService->toUpperCase($msg);
-
 
         $data = [
             'msg' => $msg
