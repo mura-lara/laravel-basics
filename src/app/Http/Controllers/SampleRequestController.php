@@ -13,13 +13,19 @@ class SampleRequestController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
 
-        $data = [
-            'text' => $request->input('text')
-        ];
+        // トークンも含めて全て取得
+        // $data = $request->all();
 
-        return view('request', $data);
+        // トークン以外を取得
+
+        // onlyをつかう場合は、指定のもののみ取得
+        // $data = $request->only('name', 'address', 'mail');
+
+        // except 除外するものを指定
+        $data = $request->except('_token');
+        
+        return view('request', ['data' => $data]);
     }
 
 }
