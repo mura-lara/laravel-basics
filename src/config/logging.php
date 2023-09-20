@@ -54,7 +54,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['monitor', 'error'],
             'ignore_exceptions' => false,
         ],
 
@@ -125,6 +125,21 @@ return [
 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
+        ],
+
+        // 自作のチャンネル
+        // 監視用ログチャンネル
+        'monitor' => [
+            'driver' => 'daily', // 日付ごとのファイルに出力
+            'path' => storage_path('logs/monitor.log'), // ファイルの出力先
+            'level' => 'info', // INFO レベル以上のログを出力
+        ],
+
+        // エラーログチャンネル
+        'error' => [
+            'driver' => 'daily', // 日付ごとのファイルに出力
+            'path' => storage_path('logs/errors/error.log'), // エラーログファイルの出力先
+            'level' => 'error', // ERROR レベルのログを出力
         ],
     ],
 
