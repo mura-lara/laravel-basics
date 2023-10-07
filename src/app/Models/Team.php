@@ -15,7 +15,18 @@ class Team extends Model
     {
         return new CustomCollection($models);
     }
+
+    // アクセサ
+    public function getTeamNameAddDescriptionAttribute(){
+        return 'アクセサで付与された説明：' . $this->team_name;
+    }
+
+    // アクセサ(既存のプロパティを変更)
+    public function getTeamNameAttribute($value) {
+        return "アクセサで既存のプロパティを変更：" . $value;
+    }
 }
+
 
 // カスタムコレクション
 class CustomCollection extends Collection
