@@ -10,6 +10,16 @@ class Team extends Model
 {
     use HasFactory;
 
+    // 値を代入したくない項目リスト
+    protected  $guarded = [
+        'id'
+    ];
+
+    // バリデーション情報リスト
+    public static $rules = [
+        'team_name' => 'required'
+    ];
+
     // カスタムコレクションを使う
     public function newCollection(array $models = [])
     {
@@ -25,6 +35,17 @@ class Team extends Model
     public function getTeamNameAttribute($value) {
         return "アクセサで既存のプロパティを変更：" . $value;
     }
+
+    // ミューテータ
+    public function setTeamNameAddDescriptionAttribute($value) {
+        return $this->attributes['team_name'] = 'ミューテータで付与された説明：' . $value;
+    }
+    
+    // ミューテータ(既存のプロパティを変更)
+    public function setTeamNameAttribute($value) {
+        return $this->attributes['team_name'] = 'ミューテータで既存プロパティを変更：' . $value;
+    }
+
 }
 
 
