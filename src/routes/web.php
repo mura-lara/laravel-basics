@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\SampleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,6 @@ Route::get('/', function () {
 
 
 Route::get('service', [MyController::class, "index"]);
+
+Route::get('sample', [SampleController::class, "index"]);
+Route::post('sample', [SampleController::class, "processCheckbox"]);
