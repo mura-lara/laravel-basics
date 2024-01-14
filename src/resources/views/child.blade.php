@@ -1,13 +1,13 @@
 {{-- 親レイアウトを継承 --}}
-@extends('parent')
+{{-- @extends('parent') --}}
 
 {{-- @yieldで指定した箇所へ組み込み --}}
-@section('content')
+{{-- @section('content') --}}
 
-<h2>コンテンツ</h2>
+{{-- <h2>コンテンツ</h2> --}}
 {{-- form組み込み --}}
 {{-- @include('form') --}}
-    @include('form', [
+    {{-- @include('form', [
         'formMethod' => 'post',
         'formAction' => '',
 
@@ -34,4 +34,38 @@
     ])
 
 
-@endsection
+@endsection --}}
+
+
+
+
+{{-- x-component --}}
+
+<x-parent>
+    <h2>コンテンツ</h2>
+    <x-form>
+        <x-slot:formAction></x-slot>
+        <x-slot:formMethod>post</x-slot>
+
+        <x-slot:label1>Input</x-slot>
+        <x-slot:id1>item1</x-slot>
+        <x-slot:name1>item1</x-slot>
+
+        <x-slot:label2>Radio</x-slot>
+        <x-slot:radioName>radio</x-slot>
+        <x-slot:radioId1>radio1</x-slot>
+        <x-slot:radioId2>radio2</x-slot>
+
+        <x-slot:label3>Select</x-slot>
+        <x-slot:selectName>item3</x-slot>
+        <x-slot:selectId>select1</x-slot>
+        <x-slot:optionValue1>value1</x-slot>
+        <x-slot:optionText1>Option 1</x-slot>
+        <x-slot:optionValue2>value2</x-slot>
+        <x-slot:optionText2>Option 2</x-slot>
+        <x-slot:optionValue3>value3</x-slot>
+        <x-slot:optionText3>Option 3</x-slot>
+
+        <x-slot:submitText>送信</x-slot>
+    </x-form>
+</x-parent>
